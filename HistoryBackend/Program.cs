@@ -1,7 +1,15 @@
+using HistoryBackend.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Строка подключения к базе данных
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// Регистрация DbContext
+builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(connectionString));
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
@@ -48,6 +56,7 @@ app.MapScalarApiReference(opt =>
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllers();
 

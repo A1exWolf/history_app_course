@@ -1,0 +1,13 @@
+﻿using HistoryBackend.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace HistoryBackend.Data;
+
+public class ApplicationDbContext : DbContext
+{
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    {
+    }
+    
+    public DbSet<TodoItem> TodoItems { get; set; }
+}
