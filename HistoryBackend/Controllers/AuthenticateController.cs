@@ -25,6 +25,7 @@ public class AuthenticateController : ControllerBase
         _configuration = configuration;
     }
 
+    // TODO Доделать авторизацию и регистрацию + регистрация администратора
 
     private JwtSecurityToken GetToken(List<Claim> authClaims)
     {
